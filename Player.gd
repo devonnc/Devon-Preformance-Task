@@ -6,17 +6,14 @@ func _process(delta):
 	if Input.is_action_pressed("move_down"):
 		velocity.y += 1
 	if Input.is_action_pressed("move_left"):
-		velocity.x += 1
+		velocity.x -= 1
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
 	if Input.is_action_pressed("move_up"):
-		velocity.y += 1
-	if velocity.length > 0:
+		velocity.y -= 1
+	if velocity.length() > 0:
+		velocity = velocity * Speed
+	position += velocity * delta
 
-	position += velocity * delta	
-		
-
-
-
-	
-	
+func _on_body_entered(body):
+	hide()
